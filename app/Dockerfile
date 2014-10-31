@@ -1,5 +1,5 @@
-FROM ubuntu:12.10
-MAINTAINER Noah Isaacson noah@nisaacson.com
+FROM phusion/baseimage:latest
+MAINTAINER Mountaineer
 
 # Update the APT cache
 RUN sed -i.bak 's/main$/main universe/' /etc/apt/sources.list

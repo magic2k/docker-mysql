@@ -41,7 +41,7 @@ end
 def provision config
   if PROVISION_DOCKER
     config.vm.provision "docker" do | docker |
-      docker.pull_images "ubuntu"
+      docker.pull_images "phusion/baseimage"
     end
   end
   run_shell_scripts config
@@ -80,8 +80,8 @@ end
 # Virtualbox Provider
 ###################
 def virtualbox_setup v, override
-  override.vm.box = "precise64_virtualbox"
-  override.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  override.vm.box = "ubuntu64fusion_virtbox"
+  override.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vbox.box"
 
   # Use VBoxManage to customize the VM. For example to change memory:
   v.customize ["modifyvm", :id, "--memory", RAM_MEGABYTES]
@@ -93,8 +93,8 @@ end
 ###################
 def vmware_setup v, override
   # override box and box_url when using the "--provider vmware_fusion" flag
-  override.vm.box = "precise64_fusion"
-  override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+  override.vm.box = "ubuntu14fusion_vmware"
+  override.vm.box_url = "https://oss-binaries.phusionpassenger.com/vagrant/boxes/latest/ubuntu-14.04-amd64-vmwarefusion.box"
   v.gui = false
   v.vmx["memsize"] = RAM_MEGABYTES
   v.vmx["numvcpus"] = NUM_CPUS
